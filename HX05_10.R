@@ -39,6 +39,7 @@ saveRDS(res,"processed_mafft.outout")
 res<-readRDS("processed_mafft.outout")
 for (i in 1:length(res)){
   tmp<-res[[i]]
+  tmp<-tmp[tmp$Pos35!="-",]
   tmp<-data.frame(table(rep(tmp$Len[-1],tmp$Reads[-1])))
   if (i==1){
     ttt<-merge(data.frame("Len"=c(10:60)),tmp,by=1,all=T)
@@ -78,6 +79,7 @@ dev.off()
 ### error rate and mismath at Pos33 and Pos36
 for (i in 1:length(res)){
   tmp<-res[[i]]
+  tmp<-tmp[tmp$Pos35!="-",]
   tmp33<-tmp[tmp$Pos33!="-",]
   tmp33<-tmp33[-1,]
   tmp36<-tmp[tmp$Pos36!="-",]
@@ -174,3 +176,4 @@ t.test(eR$HX09[6:26],eR$HX10[6:26])$p.value,
 t.test(eR$HX05[32:45],eR$HX06[32:45])$p.value,
 t.test(eR$HX07[32:45],eR$HX08[32:45])$p.value,
 t.test(eR$HX09[32:45],eR$HX10[32:45])$p.value)
+pv
