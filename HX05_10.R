@@ -1,7 +1,7 @@
 rm(list=ls())
 library(tidyverse)
 library(RColorBrewer)
-setwd("/stor/work/Lambowitz/yaojun/Work/JA25159_Daniel/MAFFT/")
+setwd("/stor/work/Lambowitz/yaojun/Work/JA25159_Daniel/Daniel/MAFFT/")
 '''
 ### process MAFFT output
 for (sample in c("HX05","HX06","HX07","HX08","HX09","HX10")){
@@ -39,7 +39,7 @@ saveRDS(res,"processed_mafft.outout")
 res<-readRDS("processed_mafft.outout")
 for (i in 1:length(res)){
   tmp<-res[[i]]
-  tmp<-tmp[tmp$Pos35!="-",]
+  tmp<-tmp[tmp$Pos35!="-" & tmp$Pos36!="-",]
   tmp<-data.frame(table(rep(tmp$Len[-1],tmp$Reads[-1])))
   if (i==1){
     ttt<-merge(data.frame("Len"=c(10:60)),tmp,by=1,all=T)
@@ -79,7 +79,7 @@ dev.off()
 ### error rate and mismath at Pos33 and Pos36
 for (i in 1:length(res)){
   tmp<-res[[i]]
-  tmp<-tmp[tmp$Pos35!="-",]
+  tmp<-tmp[tmp$Pos35!="-" & tmp$Pos36!="-",]
   tmp33<-tmp[tmp$Pos33!="-",]
   tmp33<-tmp33[-1,]
   tmp36<-tmp[tmp$Pos36!="-",]
@@ -177,3 +177,55 @@ t.test(eR$HX05[32:45],eR$HX06[32:45])$p.value,
 t.test(eR$HX07[32:45],eR$HX08[32:45])$p.value,
 t.test(eR$HX09[32:45],eR$HX10[32:45])$p.value)
 pv
+
+
+### primer vs products
+for (i in (1:length(res))){
+  tmp<-res[[i]][-1,]
+  tmp<-tmp[tmp$Pos36!="-",]
+  pp<-data.frame("cDNA"=sum(tmp$Reads[tmp$Pos35!="-"]),
+                 "Primer"=sum(tmp$Reads[tmp$Pos35=="-"]),
+                 "Primer_A"=sum(tmp$Reads[tmp$Pos35=="-" & tmp$Pos36=="T"]),
+                 "Primer_T"=sum(tmp$Reads[tmp$Pos35=="-" & tmp$Pos36=="A"]),
+                 "cDNA_A"=sum(tmp$Reads[tmp$Pos35!="-" & tmp$Pos36=="T"]),
+                 "cDNA_T"=sum(tmp$Reads[tmp$Pos35!="-" & tmp$Pos36=="A"]))
+  if (i==1){
+    ppt<-pp
+  } else {
+    ppt<-rbind(ppt,pp)
+  }
+}
+rownames(ppt)<-names(res)
+ppt<-t(ppt)
+
+pdf("../Figs/Mismatched.pdf",width=8,height=8)
+par(mfrow=c(2,2))
+tmp<-ppt[1:2,]
+tmp<-prop.table(tmp,2)*100
+mp<-barplot(cbind(tmp,NA,NA,NA),names.arg = rep(NA,9),
+            col=c("lightblue","tomato"),ylim=c(0,100),
+            ylab="Reads",main="Extended primer (%)",yaxt="n")
+legend("right",legend = c("Extended","Unused"),title = "Primer",fill=c("lightblue","tomato"),bty="n")
+axis(2,at=seq(0,100,25),labels = seq(0,100,25),las=2)
+axis(1,at=mp[1:6],labels= c("PPRT","Mut","PPRT|8-oxo-G",
+                            "Mut|8-oxo-G","HIV RT","HIV PPRT"),las=2)
+
+plot.new()
+tmp<-ppt[3:4,c(-3:-4)]
+tmp<-prop.table(tmp,2)*100
+mp<-barplot(cbind(tmp,NA,NA,NA),names.arg = rep(NA,7),
+            col=c("lightblue","tomato"),ylim=c(0,100),
+            ylab="Reads",main="Mismatched nulcotide in unused primer",yaxt="n")
+legend("right",legend = c("Original (A)","Corrected (T)"),fill=c("lightblue","tomato"),bty="n")
+axis(2,at=seq(0,100,25),labels = seq(0,100,25),las=2)
+axis(1,at=mp[1:4],labels= c("PPRT","Mut","HIV RT","HIV PPRT"),las=2)
+
+tmp<-ppt[5:6,c(-3:-4)]
+tmp<-prop.table(tmp,2)*100
+mp<-barplot(cbind(tmp,NA,NA,NA),names.arg = rep(NA,7),
+            col=c("lightblue","tomato"),ylim=c(0,100),
+            ylab="Reads",main="Mismatched nulcotide in extended primer",yaxt="n")
+legend("right",legend = c("Original (A)","Corrected (T)"),fill=c("lightblue","tomato"),bty="n")
+axis(2,at=seq(0,100,25),labels = seq(0,100,25),las=2)
+axis(1,at=mp[1:4],labels= c("PPRT","Mut","HIV RT","HIV PPRT"),las=2)
+dev.off()
