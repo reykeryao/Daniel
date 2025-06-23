@@ -318,6 +318,23 @@ for (i in 1:length(sample)){
 tmp<-tmp[,c(1,2,4,6,8)]
 colnames(tmp[-1])<-sample
 write.table(tmp,"Palindrome.results.txt",sep="\t",row.names=F,quote=F)
+
+pdf("Figs/4nt_parlindrom_frq.pdf",width=16,height=12)
+par(mfrow=c(4,1))
+for (i in 1:length(sample)){
+  dat<-read.delim(gzfile(paste0("Merged/",sample[i],".parlindrom.info.gz")))
+  Arm<-100*round(sum(dat$left!="")/length(dat$left),3)
+  Left<-DNAStringSet(dat$left[dat$left!=""])
+  Frq<-100*oligonucleotideFrequency(Left,width = 4,as.prob = TRUE,simplify.as="collapsed")
+  mp<-barplot(Frq,main=paste0(sample[i],": Reads with >= 4nt parlindrome ",Arm,"%"),ylim=c(0,20),
+              ylab="Frequncy (%)",names.arg = rep(NA,length(Frq)))  
+  axis(1,at=mp,labels = names(Frq),cex.axis=0.35,las=2)
+}
+dev.off()
   
-  
-  
+
+
+for (i in 1:length(sample)){
+  dat<-read.delim(gzfile(paste0("Merged/",sample[i],".parlindrom.info.gz")))
+  print(c(length(dat$Seq),sum(dat$left!="")))
+}

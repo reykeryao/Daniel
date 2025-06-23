@@ -160,13 +160,11 @@ dev.off()
 
 pdf("../Figs/error_rate_boxplot.pdf")
 par(mfrow=c(1,2))
-boxplot(eR[6:26,],ylab="Error rate (%)",names = NA,main="cDNA 3' end error rate")
-axis(1,at=1:6,labels=c("PPRT","Mut","PPRT|8-oxo-G",
-  "Mut|8-oxo-G","HIV RT","HIV PPRT"),las=2)
+boxplot(eR[6:26,c(1:2,5:6)],ylab="Error rate (%)",names = NA,main="cDNA 3' end error rate")
+axis(1,at=1:4,labels=c("PPRT","Mut","HIV RT","HIV PPRT"),las=2)
 
-boxplot(eR[32:45,],ylab="Error rate (%)",names = NA,main="cDNA 5' end error rate")
-axis(1,at=1:6,labels=c("PPRT","Mut","PPRT|8-oxo-G",
-                       "Mut|8-oxo-G","HIV RT","HIV PPRT"),las=2)
+boxplot(eR[30:45,c(1:2,5:6)],ylab="Error rate (%)",names = NA,main="cDNA 5' end error rate",ylim=c(0,6))
+axis(1,at=1:4,labels=c("PPRT","Mut","HIV RT","HIV PPRT"),las=2)
 dev.off()
 
 ### compare err rate
