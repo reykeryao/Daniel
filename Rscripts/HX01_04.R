@@ -316,6 +316,7 @@ for (i in 1:length(sample)){
   }
 }  
 tmp<-tmp[,c(1,2,4,6,8)]
+
 colnames(tmp[-1])<-sample
 write.table(tmp,"Results/Palindrome.results.txt",sep="\t",row.names=F,quote=F)
 
