@@ -79,10 +79,9 @@ dev.off()
 ### error rate and mismath at Pos33 and Pos36
 for (i in 1:length(res)){
   tmp<-res[[i]]
-  tmp<-tmp[tmp$Pos35!="-" & tmp$Pos36!="-",]
-  tmp33<-tmp[tmp$Pos33!="-",]
+  tmp33<-tmp[tmp$Pos32!="-",]
   tmp33<-tmp33[-1,]
-  tmp36<-tmp[tmp$Pos36!="-",]
+  tmp36<-tmp[tmp$Pos35!="-",]
   tmp36<-tmp36[-1,]
   err<-data.frame(apply(tmp[,8:57],2,function(x){
     temp<-x[1];
@@ -90,9 +89,9 @@ for (i in 1:length(res)){
     (sum(pos==temp)/sum(pos!="-"))
   }))
   if (i==1){
-    res33<-merge(data.frame("NT"=c("A","C","G","T")),
+    res33<-merge(data.frame("NT"=c("A","C","G","T","-")),
                  data.frame(table(rep(tmp33$Pos33,tmp33$Reads))),by=1,all=T)
-    res36<-merge(data.frame("NT"=c("A","C","G","T")),
+    res36<-merge(data.frame("NT"=c("A","C","G","T","-")),
                  data.frame(table(rep(tmp36$Pos36,tmp36$Reads))),by=1,all=T)
     eR<-err
   } else {
@@ -111,34 +110,25 @@ res36[,-1]<-prop.table(as.matrix(res36[,-1]),2)*100
 eR<-100-100*eR
 ### 33 and 36 pos bar
 pdf("../Figs/mismatch_errorrate.pdf")
-par(mfrow=c(3,2))
-frq<-res33
+frq<-cbind(res33[,c(1,4,5)],NA,res36[,c(-1,-4:-5)])
 rownames(frq)<-frq$NT
 frq<-as.matrix(frq[,-1])
 ##RC rownames
-rownames(frq)<-rev(rownames(frq))
+rownames(frq)[-1]<-rev(rownames(frq)[-1])
 frq<-frq[sort(rownames(frq)),]
-mp<-barplot(cbind(frq,NA,NA),names.arg = rep(NA,8),
-        col=c("lightblue","blue","gold","tomato"),ylim=c(0,100),
-        ylab="Reads",main="Nucleotide frequency at Pos28 (8-oxo-G)",yaxt="n")
-legend("right",legend = rownames(frq),fill=c("lightblue","blue","gold","tomato"),bty="n")
+mp<-barplot(cbind(frq,NA),names.arg = rep(NA,8),
+        col=c("gray","lightblue","blue","gold","tomato"),ylim=c(0,100),
+        ylab="Reads",yaxt="n")
+legend("right",legend = rev(c("Del",rownames(frq)[-1])),fill=rev(c("gray","lightblue","blue","gold","tomato")),bty="n")
 axis(2,at=seq(0,100,25),labels = seq(0,100,25),las=2)
-axis(1,at=mp[1:6],labels= c("PPRT","Mut","PPRT|8-oxo-G",
-              "Mut|8-oxo-G","HIV RT","HIV PPRT"),las=2)
+axis(1,at=mp[1:2],labels= c("PPRT|8-oxo-G","Mut|8-oxo-G"),las=2)
+axis(2,pos = 3.4,at=seq(0,100,25),labels = seq(0,100,25),las=2)
+axis(1,at=mp[4:7],labels= c("PPRT","Mut","HIV RT","HIV PPRT"),las=2)
+mtext(side=3,at=mean(mp[1:2]),line = 1,"Pos28")
+mtext(side=3,at=mean(mp[4:7]),line = 1,"Pos31")
+dev.off()
 
-frq<-res36
-rownames(frq)<-frq$NT
-frq<-as.matrix(frq[,-1])
-rownames(frq)<-rev(rownames(frq))
-frq<-frq[sort(rownames(frq)),]
-mp<-barplot(cbind(frq,NA,NA),names.arg = rep(NA,8),
-        col=c("lightblue","blue","gold","tomato"),ylim=c(0,100),
-        ylab="Reads",main="Nucleotide frequency at Pos31 (A)",yaxt="n")
-legend("right",legend = rownames(frq),fill=c("lightblue","blue","gold","tomato"),bty="n")
-axis(2,at=seq(0,100,25),labels = seq(0,100,25),las=2)
-axis(1,at=mp[1:6],labels= c("PPRT","Mut","PPRT|8-oxo-G",
-                            "Mut|8-oxo-G","HIV RT","HIV PPRT"),las=2)
-
+'''
 plot(eR$HX05[45:6]~c(5:44),type="l",ylim=c(0,100),xlab="cDNA (5'->3')",ylab="Error rate (%)")
 lines(eR$HX06[45:6]~c(5:44),type="l",col="red")
 legend("topleft",lty=1,col=c("black","red"),bty="n",legend = c("PPRT","PrimPol"))
@@ -156,7 +146,8 @@ lines(eR$HX08[45:6]~c(5:44),type="l",col="red")
 legend("topleft",lty=1,col=c("black","red"),bty="n",legend = c("PPRT","PrimPol"))
 abline(v=22,lty=2)
 text(22,60,pos=4,"8-oxo-G")
-dev.off()
+'''
+
 
 pdf("../Figs/error_rate_boxplot.pdf")
 par(mfrow=c(1,2))
