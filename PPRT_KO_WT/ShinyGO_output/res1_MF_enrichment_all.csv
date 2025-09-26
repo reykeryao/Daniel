@@ -1,0 +1,5 @@
+"Enrichment FDR","nGenes","Pathway Genes","Fold Enrichment","Pathway","URL","Genes"
+0.0219986824866266,3,6,16,"GO:0004888 transmembrane signaling receptor activity","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0004888","tar tap tsr"
+0.0219986824866266,4,14,9.14285714285714,"GO:0005198 structural molecule activity","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0005198","fliC sufA flgK flgL"
+0.0219986824866266,3,6,16,"GO:0008106 alcohol dehydrogenase (NADP+) activity","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0008106","ahr yghA yahK"
+0.194277118129563,3,14,6.85714285714286,"GO:0004601 peroxidase activity","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0004601","katE hcp yfcG"

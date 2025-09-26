@@ -1,0 +1,8 @@
+"Enrichment FDR","nGenes","Pathway Genes","Fold Enrichment","Pathway","URL","Genes"
+0.000445269147676968,4,6,21.4814814814815,"GO:0070069 cytochrome complex","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0070069","appC cydX cydA cydB"
+0.000735645781082471,18,202,2.87128712871287,"GO:0030288 outer membrane-bounded periplasmic space","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0030288","ompA cpdB xylF malE nrfA sodC ydeN lysP appA cysP proX aphA gcd zraP ybaV ansB pqiB oppA"
+0.00152411618202891,13,127,3.29833770778653,"GO:0043190 ATP-binding cassette (ABC) transporter complex","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0043190","malE oppA malK cysA malF cysW ugpC malG proX lptB artQ sapB potG"
+0.00525332472630877,15,187,2.58467023172906,"GO:0042597 periplasmic space","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0042597","hybO speA xylF cysP nrfA zraP sodC hybA oppA appA cpdB malE aphA ansB proX"
+0.00651047901549695,4,15,8.59259259259259,"GO:0044569 [Ni-Fe] hydrogenase complex","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0044569","hybC hybO hybB hybA"
+0.0972171164167662,10,149,2.16256524981357,"GO:0055052 ATP-binding cassette (ABC) transporter complex-substrate-binding subunit-containing","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0055052","ugpC malK malE artQ artP oppA oppB potG sapB xylF"
+0.187575804275304,38,931,1.31519274376417,"GO:0005737 cytoplasm","HTTP://AMIGO.GENEONTOLOGY.ORG/AMIGO/TERM/GO:0005737","yadI ybeY dadA ugpQ sodB deoC asnA rsmB nhaR ptrB fadA uspA lptB tdcA cbpA nagB preA rapA tmcA dbpA acnA ftnB pyrG yjjG ybeZ lsrR mtfA hcp iraP tdcE arfB rlmN deoB flgN cfa sodA uvrA deoD"

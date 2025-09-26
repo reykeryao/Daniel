@@ -1,0 +1,7 @@
+"Enrichment FDR","nGenes","Pathway Genes","Fold Enrichment","Pathway","URL","Genes"
+0.0161804797084105,3,6,16,"SO4ASSIM-PWY assimilatory sulfate reduction I","HTTPS://ECOCYC.ORG/ECOLI/PATHWAY-GENES?OBJECT=SO4ASSIM-PWY","cysD cysN cysJ"
+0.0442597103023836,3,10,9.6,"PWY-8171 molybdenum cofactor biosynthesis","HTTPS://ECOCYC.ORG/ECOLI/PATHWAY-GENES?OBJECT=PWY-8171","cysW cysP sbp"
+0.0516648611598271,3,12,8,"SULFATE-CYS-PWY superpathway of sulfate assimilation and cysteine biosynthesis","HTTPS://ECOCYC.ORG/ECOLI/PATHWAY-GENES?OBJECT=SULFATE-CYS-PWY","cysD cysN cysJ"
+0.0971120377501719,2,6,10.6666666666667,"PWY-5437 L-threonine degradation I","HTTPS://ECOCYC.ORG/ECOLI/PATHWAY-GENES?OBJECT=PWY-5437","tdcB tdcD"
+0.106552023152638,2,7,9.14285714285714,"ASPASN-PWY superpathway of L-aspartate and L-asparagine biosynthesis","HTTPS://ECOCYC.ORG/ECOLI/PATHWAY-GENES?OBJECT=ASPASN-PWY","iaaA ansB"
+0.178946568428229,2,10,6.4,"PWY0-461 L-lysine degradation I","HTTPS://ECOCYC.ORG/ECOLI/PATHWAY-GENES?OBJECT=PWY0-461","cadA gabD"
