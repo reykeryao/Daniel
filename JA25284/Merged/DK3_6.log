@@ -1,0 +1,40 @@
+Read1 before filtering:
+total reads: 2284260
+total bases: 127539511
+Q20 bases: 117344601(92.0065%)
+Q30 bases: 111839786(87.6903%)
+
+Read2 before filtering:
+total reads: 2284260
+total bases: 126751302
+Q20 bases: 115153640(90.8501%)
+Q30 bases: 111565701(88.0194%)
+
+Merged and filtered:
+total reads: 2236428
+total bases: 111761380
+Q20 bases: 110882863(99.2139%)
+Q30 bases: 108074812(96.7014%)
+
+Filtering result:
+reads passed filter: 4488534
+reads failed due to low quality: 76868
+reads failed due to too many N: 3118
+reads failed due to too short: 0
+reads corrected by overlap analysis: 806243
+bases corrected by overlap analysis: 1130405
+
+Duplication rate: 93.4538%
+
+Insert size peak (evaluated by paired-end reads): 50
+
+Read pairs merged: 2236428
+% of original read pairs: 97.906%
+% in reads after filtering: 100%
+
+
+JSON report: Merged/DK3_6.json
+HTML report: Merged/DK3_6.html
+
+fastp -A -m -c --overlap_len_require 10 --merged_out Merged/DK3_6.fq.gz -i Trim/DK3_6.1.fq.gz -I Trim/DK3_6.2.fq.gz -o Merged/DK3_6.un.1.fq.gz -O Merged/DK3_6.un.2.fq.gz -j Merged/DK3_6.json -h Merged/DK3_6.html 
+fastp v0.23.4, time used: 5 seconds
