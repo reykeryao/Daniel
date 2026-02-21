@@ -1,0 +1,40 @@
+Read1 before filtering:
+total reads: 1704406
+total bases: 89664538
+Q20 bases: 86363462(96.3184%)
+Q30 bases: 85014263(94.8137%)
+
+Read2 before filtering:
+total reads: 1704406
+total bases: 98164291
+Q20 bases: 86198343(87.8103%)
+Q30 bases: 83276548(84.8339%)
+
+Merged and filtered:
+total reads: 1650832
+total bases: 81963146
+Q20 bases: 81773640(99.7688%)
+Q30 bases: 81222952(99.0969%)
+
+Filtering result:
+reads passed filter: 3311108
+reads failed due to low quality: 97700
+reads failed due to too many N: 2
+reads failed due to too short: 2
+reads corrected by overlap analysis: 47571
+bases corrected by overlap analysis: 76094
+
+Duplication rate: 94.3138%
+
+Insert size peak (evaluated by paired-end reads): 50
+
+Read pairs merged: 1650832
+% of original read pairs: 96.8567%
+% in reads after filtering: 100%
+
+
+JSON report: Merged/DK4_4.json
+HTML report: Merged/DK4_4.html
+
+fastp -A -m -c --overlap_len_require 10 --merged_out Merged/DK4_4.fq.gz -i ../Trim/DK4_4.1.fq.gz -I ../Trim/DK4_4.2.fq.gz -o Merged/DK4_4.un.1.fq.gz -O Merged/DK4_4.un.2.fq.gz -j Merged/DK4_4.json -h Merged/DK4_4.html 
+fastp v0.23.4, time used: 4 seconds
